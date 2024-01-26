@@ -4,7 +4,12 @@ const { Server } = require('socket.io');
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server)
+const io = new Server(server, {
+    cors: {
+        origin: '*',
+        methods: ['GET', 'POST']
+    }
+})
 
 app.get('/', function (req, res) {
     res.send('Hello World')
@@ -18,9 +23,8 @@ io.on('connection', (socket) => {
     console.log('a user connected')
 
     socket.on('disconnect', () => {
-        console.log('연결 해제')
+        console.log('연결 해제 ')
     })
-
 })
 
 const PORT = process.env.PORT || 3000;
