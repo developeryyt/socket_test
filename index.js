@@ -16,6 +16,11 @@ app.get('/hi', function (req, res) {
 
 io.on('connection', (socket) => {
     console.log('a user connected')
+
+    socket.on('disconnect', () => {
+        console.log('연결 해제')
+    })
+
 })
 
 const PORT = process.env.PORT || 3000;
