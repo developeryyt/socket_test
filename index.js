@@ -6,7 +6,7 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: '*',
+        origin: "*",
         methods: ['GET', 'POST']
     }
 })
@@ -23,6 +23,8 @@ const io = new Server(server, {
 
 io.on('connection', (socket) => {
     console.log('a user connected')
+
+    socket.emit('hello', 'server hello');
 
     socket.on('disconnect', () => {
         console.log('연결 해제 ')
